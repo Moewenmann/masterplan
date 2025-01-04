@@ -24,6 +24,14 @@ check_host() {
 	return $?
 }
 
+shell_connect() {
+	local ip=$1
+	echo "	:: shellconnect - shell@$ip:$NC_PORT ::"
+	nc ${ip} ${NC_PORT}
+	echo "Connection closed."
+	exit 0
+}
+
 main_select() {
 	while true; do
 		echo "	:: shellconnect ::"
@@ -59,7 +67,7 @@ connect_w_ip() {
 				mode_menu $ip
 			else
 				echo "[!] Host not reachable!"
-				mode_menu $ip
+				#mode_menu $ip
 				exit 1
 			fi
 		else
@@ -79,14 +87,13 @@ mode_menu() {
 
 		case $c in
 			1)
-				echo "	:: shellconnect - shell@$ip:$NC_PORT ::"
-				nc ${ip} ${NC_PORT}
+				shell_connect $ip
 				;;
 			2)
 				script_execution
 				;;
 			0)
-				return
+				exit 0
 				;;
 			*)
 				echo "invalid."
