@@ -123,7 +123,7 @@ script_execution() {
 			1)
 				echo "test script selected."
 				if se_confirm; then
-					curl -sSL https://raw.githubusercontent.com/0x0elliot/masterplan/main/test.sh | nc ${ip} ${NC_PORT}
+					curl -sSL https://raw.githubusercontent.com/Moewenmann/masterplan/refs/heads/main/scripts/test.sh | nc ${ip} ${NC_PORT}
 				fi
 				;;
 			00)
